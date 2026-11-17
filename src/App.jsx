@@ -1,6 +1,8 @@
 
 import { Routes, Route, Navigate } from 'react-router-dom'
 
+import AppLayout from './components/AppLayout'
+
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
@@ -12,14 +14,61 @@ import Teams from './pages/Teams'
 function App() {
   return (
     <Routes>
+
+      {/* Authentication Pages */}
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/hackathons" element={<Hackathons />} />
-      <Route path="/students" element={<Students />} />
-      <Route path="/teams" element={<Teams />} />
+
+      {/* Main Application Pages */}
+      <Route
+        path="/dashboard"
+        element={
+          <AppLayout>
+            <Dashboard />
+          </AppLayout>
+        }
+      />
+
+      <Route
+        path="/projects"
+        element={
+          <AppLayout>
+            <Projects />
+          </AppLayout>
+        }
+      />
+
+      <Route
+        path="/students"
+        element={
+          <AppLayout>
+            <Students />
+          </AppLayout>
+        }
+      />
+
+      <Route
+        path="/hackathons"
+        element={
+          <AppLayout>
+            <Hackathons />
+          </AppLayout>
+        }
+      />
+
+      <Route
+        path="/teams"
+        element={
+          <AppLayout>
+            <Teams />
+          </AppLayout>
+        }
+      />
+
+      {/* Unknown Routes */}
+      <Route path="*" element={<Navigate to="/login" replace />} />
+
     </Routes>
   )
 }
